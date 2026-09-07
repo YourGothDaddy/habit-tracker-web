@@ -1,7 +1,8 @@
 import { Navigate, Outlet } from 'react-router-dom'
+import { useAuth } from '../auth/AuthContext'
 
 export function ProtectedRoute() {
-    const token = localStorage.getItem('authToken')
+    const { user } = useAuth()
 
-    return token ? <Outlet /> : <Navigate to="/login" replace />
+    return user ? <Outlet /> : <Navigate to="/login" replace />
 }
